@@ -1,4 +1,5 @@
 'use strict';
+
 const mongoose = require('mongoose');
 const Cliente = mongoose.model('Cliente');
 
@@ -20,9 +21,11 @@ exports.create = async (data) => {
 }
 
 exports.update = async (id, nome) => {
+    const data = new Date();
     await Cliente.findByIdAndUpdate(id, {
         $set: {
-            nome: nome
+            nome: nome,
+            dataAtualizacao: data
         }
     });
 }
