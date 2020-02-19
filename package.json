@@ -22,7 +22,8 @@
     "body-parse": "^0.1.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "http": "0.0.0"
+    "http": "0.0.0",
+    "mongoose": "^5.9.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
