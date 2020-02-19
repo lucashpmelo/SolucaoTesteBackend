@@ -3,14 +3,16 @@
 const express = require('express');
 
 const app = express();
-const router = express.Router();
 
-const route = router.get('/', (req, res, next) => {
-    res.status(200).send({
-        title: "Node Store API",
-        version: "0.0.1"
-    });
-});
-app.use('/', route);
+//Rotas
+const indexRoute = require('./routes/index-route');
+const clienteRoute = require('./routes/cliente-route');
+const pedidoRoute = require('./routes/pedido-route');
+const produtoRoute = require('./routes/produto-route');
+
+app.use('/', indexRoute);
+app.use('/clientes', clienteRoute);
+app.use('/pedidos', pedidoRoute);
+app.use('/produtos', produtoRoute);
 
 module.exports = app;
