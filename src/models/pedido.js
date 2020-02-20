@@ -17,8 +17,7 @@ const schema = new Schema({
     },
     dataAtualizacao: {
         type: Date,
-        required: true,
-        default: Date.now
+        required: false
     },
     produtos: [{
         idProduto: {

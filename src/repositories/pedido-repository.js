@@ -22,6 +22,11 @@ exports.update = async (id, data) => {
             produtos: data.produtos
         }
     });
+
+    const res = await Pedido.findOne({
+        _id: id
+    }, '_id cliente dataCadastro dataAtualizacao produtos');
+    return res;
 }
 
 exports.delete = async (id) => {

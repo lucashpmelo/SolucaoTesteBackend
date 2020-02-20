@@ -35,10 +35,13 @@ exports.post = async (req, res, next) => {
     }
 
     try {
-        const data = await repository.create(req.body);
-        res.status(201).send({
-            //message: 'Cliente cadastrado com sucesso!'
-            data
+        const data = await repository.create(req.body);        
+
+        res.status(201).send({            
+            nome: data.nome,
+            dataNascimento: data.dataNascimento,
+            dataCadastro: data.dataCadastro,
+            _id: data._id
         });
     } catch (e) {
         res.status(500).send({
@@ -59,7 +62,8 @@ exports.put = async (req, res, next) => {
     try {
         const data = await repository.update(req.body._id, req.body.nome);
         res.status(200).send({
-            data
+            nome: data.nome,
+            dataAtualizacao: data.dataAtualizacao
         });
     } catch (e) {
         res.status(500).send({

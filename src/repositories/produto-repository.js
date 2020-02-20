@@ -28,6 +28,11 @@ exports.update = async (id, descricao) => {
             dataAtualizacao: data
         }
     });
+
+    const res = await Produto.findOne({
+        _id: id
+    }, '_id descricao preco dataCadastro dataAtualizacao');
+    return res;
 }
 
 exports.delete = async (id) => {

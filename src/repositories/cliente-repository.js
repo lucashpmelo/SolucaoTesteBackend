@@ -31,7 +31,7 @@ exports.update = async (id, nome) => {
     
     const res = await Cliente.findOne({
         nome: nome
-    }, 'nome dataNascimento dataCadastro dataAtualizacao');
+    }, '_id nome dataNascimento dataCadastro dataAtualizacao');
     return res;
 }
 
