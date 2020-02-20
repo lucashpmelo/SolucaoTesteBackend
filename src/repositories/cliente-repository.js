@@ -17,7 +17,7 @@ exports.getByName = async (nome) => {
 
 exports.create = async (data) => {
     const cliente = new Cliente(data);
-    await cliente.save();
+    return await cliente.save();
 }
 
 exports.update = async (id, nome) => {
@@ -28,6 +28,11 @@ exports.update = async (id, nome) => {
             dataAtualizacao: data
         }
     });
+    
+    const res = await Cliente.findOne({
+        nome: nome
+    }, 'nome dataNascimento dataCadastro dataAtualizacao');
+    return res;
 }
 
 exports.delete = async (id) => {

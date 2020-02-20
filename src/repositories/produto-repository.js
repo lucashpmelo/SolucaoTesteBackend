@@ -17,7 +17,7 @@ exports.getByDescricao = async (descricao) => {
 
 exports.create = async (data) => {
     const produto = new Produto(data);
-    await produto.save();
+    return await produto.save();
 }
 
 exports.update = async (id, descricao) => {

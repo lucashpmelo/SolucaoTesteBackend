@@ -10,7 +10,7 @@ exports.get = async () => {
 
 exports.create = async (data) => {
     const pedido = new Pedido(data);
-    await pedido.save();
+    return await pedido.save();
 }
 
 exports.update = async (id, data) => {

@@ -30,14 +30,15 @@ exports.post = async (req, res, next) => {
     contract.hasMinLen(req.body.nome, 1, 'Nome Cliente é obrigatório');
 
     if (!contract.isValid()) {
-        res.status(400).send(contract.errors()).end();
+        res.status(400).send({message: 'Nome Cliente é obrigatório'});
         return;
     }
 
     try {
-        await repository.create(req.body);
+        const data = await repository.create(req.body);
         res.status(201).send({
-            message: 'Cliente cadastrado com sucesso!'
+            //message: 'Cliente cadastrado com sucesso!'
+            data
         });
     } catch (e) {
         res.status(500).send({
@@ -51,14 +52,14 @@ exports.put = async (req, res, next) => {
     contract.hasMinLen(req.body._id, 0, 'Id não foi informado para alteracção');
 
     if (!contract.isValid()) {
-        res.status(401).send(contract.errors()).end();
+        res.status(401).send({message: 'Id não foi informado'});
         return;
     }
 
     try {
-        await repository.update(req.body._id, req.body.nome);
+        const data = await repository.update(req.body._id, req.body.nome);
         res.status(200).send({
-            message: 'Cliente atualizado com sucesso!'
+            data
         });
     } catch (e) {
         res.status(500).send({
