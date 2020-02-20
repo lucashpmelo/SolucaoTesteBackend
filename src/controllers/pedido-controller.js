@@ -6,7 +6,13 @@ const repository = require('../repositories/pedido-repository');
 exports.get = async (req, res, next) => {
     try {
         const data = await repository.get();
-        res.status(200).send(data);
+
+        const retorno = {
+            message: 'Sucesso',
+            lista: data
+        }
+
+        res.status(200).send(retorno);
     } catch (e) {
         res.status(500).send({
             message: 'Falha ao processar sua requisição'
@@ -19,18 +25,20 @@ exports.post = async (req, res, next) => {
     contract.hasMinLen(req.body.cliente, 0, 'Cliente é obrigatório');
 
     if (!contract.isValid()) {
-        res.status(401).send({message: 'Cliente é obrigatório'});
+        res.status(401).send({ message: 'Cliente é obrigatório' });
         return;
     }
 
     try {
-        const data = await repository.create(req.body);
-        
-        res.status(201).send({
-            dataCadastro: data.dataCadastro,
-            produtos: data.produtos,
-            _id: data._id
-        });
+        const { _id, dataCadastro, produtos } = await repository.create(req.body);
+
+        const retorno = {
+            _id,
+            dataCadastro,
+            produtos
+        }
+
+        res.status(201).send({ retorno });
     } catch (e) {
         res.status(500).send({
             message: 'Falha ao processar sua requisição'
@@ -40,11 +48,14 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
     try {
-        const data = await repository.update(req.body._id, req.body);
-        res.status(200).send({            
-            dataAtualizacao: data.dataAtualizacao,
-            cliente: data.cliente
-        });
+        const { dataAtualizacao, cliente } = await repository.update(req.body._id, req.body);
+
+        const retorno = {
+            dataAtualizacao,
+            cliente
+        }
+
+        res.status(200).send({ retorno });
     } catch (e) {
         res.status(500).send({
             message: 'Falha ao processar sua requisição'

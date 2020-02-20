@@ -17,7 +17,7 @@ exports.update = async (id, data) => {
     const date = new Date();
     await Pedido.findByIdAndUpdate(id, {
         $set: {
-            cliente: data.cliente,            
+            cliente: data.cliente,
             dataAtualizacao: date,
             produtos: data.produtos
         }

@@ -12,22 +12,22 @@ server.on('error', onError);
 server.on('listening', onListening);
 console.log('API rodando na porta ' + port);
 
-function normalizePort(val){
+function normalizePort(val) {
     const port = parseInt(val, 10);
 
-    if(isNaN(port)){
+    if (isNaN(port)) {
         return val;
     }
 
-    if(port >= 0){
+    if (port >= 0) {
         return port;
     }
 
     return false;
 }
 
-function onError(error){
-    if(error.syscall != 'listen'){
+function onError(error) {
+    if (error.syscall != 'listen') {
         throw error;
     }
 
@@ -35,7 +35,7 @@ function onError(error){
         'Pipe ' + port :
         'Port ' + port;
 
-    switch (error.code){
+    switch (error.code) {
         case 'EACCES':
             console.error(bind + ' require elevated privileges');
             process.exit(1);
@@ -49,7 +49,7 @@ function onError(error){
     }
 }
 
-function onListening(){
+function onListening() {
     const addr = server.address();
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr

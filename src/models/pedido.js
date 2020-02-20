@@ -36,7 +36,7 @@ const schema = new Schema({
         preco: {
             type: Number,
             required: true
-        }        
+        }
     }]
 });
 

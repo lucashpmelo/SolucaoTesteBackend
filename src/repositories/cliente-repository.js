@@ -11,7 +11,7 @@ exports.getAll = async () => {
 exports.getByName = async (nome) => {
     const res = await Cliente.findOne({
         nome: nome
-    }, 'nome dataNascimento dataCadastro dataAtualizacao');
+    }, 'nome');
     return res;
 }
 
@@ -28,7 +28,7 @@ exports.update = async (id, nome) => {
             dataAtualizacao: data
         }
     });
-    
+
     const res = await Cliente.findOne({
         nome: nome
     }, '_id nome dataNascimento dataCadastro dataAtualizacao');
