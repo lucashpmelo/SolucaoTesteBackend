@@ -14,6 +14,6 @@ npm test
 
 ## Banco de dados
 
-MongoDB
+MongoDB (conexão local)
 
 A string de conexão está localizada no arquivo <b>config.js</b>
